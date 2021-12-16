@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-# require_relative "advent_of_code_2021/version"
-
 class Day4
   ROW_LENGTH = 5
   BOARD_LENGTH = 5
 
   def load_input(input_file)
     @input_file = input_file
-    file_data = File.read(File.expand_path(input_file, File.dirname(__FILE__))).split
+    file_data = File.read(File.expand_path(input_file, File.dirname(__FILE__)+"/resources")).split
 
     @drawings = file_data.shift.split(',').map { |s| s.to_i }
 

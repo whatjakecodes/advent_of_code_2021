@@ -53,7 +53,6 @@ RSpec.describe Day4 do
     it "scores boards" do
       expect(@day4.score_board(@day4.boards[2], 12)).to eq(188 * 24)
     end
-
   end
 
   context 'real input' do
@@ -63,7 +62,7 @@ RSpec.describe Day4 do
     end
 
     it "answers correctly" do
-      expect(@day4.answer).to eq(0)
+      expect(@day4.answer).to eq(5685)
     end
   end
 end
