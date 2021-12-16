@@ -44,6 +44,26 @@ RSpec.describe Day4 do
       expect(@day4.boards.size).to eq(3)
     end
 
+    it 'knows if board bingos' do
+      expect(@day4.did_win(@day4.boards[2], 5)).to be_falsey
+      expect(@day4.did_win(@day4.boards[2], 11)).to be_falsey
+      expect(@day4.did_win(@day4.boards[2], 12)).to be_truthy
+    end
+
+    it "scores boards" do
+      expect(@day4.score_board(@day4.boards[2], 12)).to eq(188 * 24)
+    end
+
   end
 
+  context 'real input' do
+    before(:context) do
+      @day4 = Day4.new
+      @day4.load_input('day4.txt')
+    end
+
+    it "answers correctly" do
+      expect(@day4.answer).to eq(0)
+    end
+  end
 end
