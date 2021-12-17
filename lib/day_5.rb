@@ -1,4 +1,4 @@
-def read_input(filename)
+def read_input_day_5(filename)
   file_path = File.expand_path(filename, File.dirname(__FILE__) + "/resources")
 
   grid = [
@@ -24,7 +24,7 @@ def read_input(filename)
   grid
 end
 
-def read_input_p2(filename)
+def read_input_day_5_p2(filename)
   file_path = File.expand_path(filename, File.dirname(__FILE__) + "/resources")
 
   grid = [

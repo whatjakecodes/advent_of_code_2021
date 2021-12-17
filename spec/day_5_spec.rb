@@ -3,13 +3,13 @@ require 'day_5'
 
 RSpec.describe 'Day 5' do
   context "part 1" do
-    describe "read_input" do
+    describe "read_input_day_5" do
       it "should read tiny row input" do
         expected = [
           [0, 0],
           [1, 1]
         ]
-        data = read_input('day5_tiny_row.txt')
+        data = read_input_day_5('day5_tiny_row.txt')
         expect(data.size).to eq(2)
         expect(data[0].size).to eq(2)
         expect(data[1].size).to eq(2)
@@ -21,7 +21,7 @@ RSpec.describe 'Day 5' do
           [0, 1],
           [0, 1]
         ]
-        data = read_input('day5_tiny_column.txt')
+        data = read_input_day_5('day5_tiny_column.txt')
         expect(data.size).to eq(2)
         expect(data[0].size).to eq(2)
         expect(data[1].size).to eq(2)
@@ -41,7 +41,7 @@ RSpec.describe 'Day 5' do
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           [2, 2, 2, 1, 1, 1, 0, 0, 0, 0]
         ]
-        expect(read_input('day5_sample.txt')).to eq(expected)
+        expect(read_input_day_5('day5_sample.txt')).to eq(expected)
       end
     end
 
@@ -82,12 +82,12 @@ RSpec.describe 'Day 5' do
 
     describe "answer" do
       it 'should calculate sample intersections' do
-        grid = read_input('day5_sample.txt')
+        grid = read_input_day_5('day5_sample.txt')
         expect(count_intersections(grid)).to eq(5)
       end
 
       it 'should calculate my intersections' do
-        grid = read_input('day5.txt')
+        grid = read_input_day_5('day5.txt')
         expect(count_intersections(grid)).to eq(5585)
       end
     end
@@ -176,16 +176,16 @@ RSpec.describe 'Day 5' do
         [1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
         [2, 2, 2, 1, 1, 1, 0, 0, 0, 0],
       ]
-      expect(read_input_p2('day5_sample.txt')).to eq(expected)
+      expect(read_input_day_5_p2('day5_sample.txt')).to eq(expected)
     end
     describe "answerP2" do
       it 'should calculate sample intersections' do
-        grid = read_input_p2('day5_sample.txt')
+        grid = read_input_day_5_p2('day5_sample.txt')
         expect(count_intersections(grid)).to eq(12)
       end
 
       it 'should calculate my intersections' do
-        grid = read_input_p2('day5.txt')
+        grid = read_input_day_5_p2('day5.txt')
         expect(count_intersections(grid)).to eq(17193)
       end
     end
