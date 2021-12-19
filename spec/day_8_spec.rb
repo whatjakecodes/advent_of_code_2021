@@ -37,16 +37,16 @@ RSpec.describe 'Day 8' do
       expect(data[0][:signals]).to eq(%w[acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab])
       expect(data[0][:outputs]).to eq(%w[cdfeb fcadb cdfeb cdbaf])
 
-      segment_to_wire_map = decode_wire_map(data)
-      expect(segment_to_wire_map).to eq([{
-                                           'a': %w[d],
-                                           'bd': %w[e f],
-                                           'cf': %w[a b],
-                                           'eg': %w[c g]
-                                         }])
+      decode_wire_map(data)
+      expect(data[0][:wire_map]).to eq({
+                                         'a': %w[d],
+                                         'bd': %w[e f],
+                                         'cf': %w[a b],
+                                         'eg': %w[c g]
+                                       })
 
-      decoded_map = decode(data, segment_to_wire_map)
-      expect(decoded_map).to eq([{
+      decode_number_map(data)
+      expect(data[0][:number_map]).to eq({
                                    "8": %w[a b c d e f g],
                                    "5": %w[c d f b e],
                                    "2": %w[g c d f a],
@@ -57,28 +57,28 @@ RSpec.describe 'Day 8' do
                                    "4": %w[a b e f],
                                    "0": %w[c a g e d b],
                                    "1": %w[a b],
-                                 }])
+                                 })
 
-      expect(decode_output(data, decoded_map)).to eq(5353)
+      expect(decode_output(data)).to eq(5353)
     end
 
     it 'should decode sample input' do
       data = read_input_d8('day8_sample.txt')
       expect(data.size).to eq(10)
-      segment_to_wire_maps = decode_wire_map(data)
-      expect(segment_to_wire_maps.size).to eq(10)
+      decode_wire_map(data)
+      expect(data[0][:wire_map].size).to eq(4)
 
-      decoded_maps = decode(data, segment_to_wire_maps)
-      expect(decoded_maps.size).to eq(10)
+      decode_number_map(data)
+      expect(data[0][:number_map].size).to eq(10)
 
-      expect(decode_output(data, decoded_maps)).to eq(61229)
+      expect(decode_output(data)).to eq(61229)
     end
 
     it 'should decode my input' do
       data = read_input_d8('day8.txt')
-      segment_to_wire_maps = decode_wire_map(data)
-      decoded_maps = decode(data, segment_to_wire_maps)
-      expect(decode_output(data, decoded_maps)).to eq(986034)
+      decode_wire_map(data)
+      decode_number_map(data)
+      expect(decode_output(data)).to eq(986034)
     end
 
   end

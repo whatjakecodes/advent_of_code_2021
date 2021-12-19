@@ -35,8 +35,6 @@ def count_simple_digits(data)
 end
 
 def decode_wire_map(data)
-  wire_maps = []
-
   data.each do |segment|
     wire_map = {}
 
@@ -62,18 +60,13 @@ def decode_wire_map(data)
 
     wire_map[:'eg'] = %w[a b c d e f g] - wire_map[:cf] - wire_map[:bd] - wire_map[:a]
 
-    wire_maps.push(wire_map)
+    segment[:wire_map] = wire_map
   end
-
-  wire_maps
 end
 
-def decode(data, segment_to_wire_maps)
-  decoded_maps = []
-  i = 0
+def decode_number_map(data)
   data.each do |segment|
-    segment_to_wire_map = segment_to_wire_maps[i]
-    i += 1
+    segment_to_wire_map = segment[:wire_map]
 
     decoded_map = {
       "0": [],
@@ -119,30 +112,25 @@ def decode(data, segment_to_wire_maps)
       end
     end
 
-    decoded_maps.push(decoded_map)
+    segment[:number_map] = decoded_map
   end
-
-  decoded_maps
 end
 
-def decode_output(data, decoded_maps)
+def decode_output(data)
   sum = 0
-  i = 0
 
   data.each do |segment|
     number = ''
-    output = segment[:outputs]
-    decoded_map = decoded_maps[i]
-    i += 1
+    outputs = segment[:outputs]
+    number_map = segment[:number_map]
 
-    output.each do |signal|
+    outputs.each do |signal|
       signal_set = Set.new(signal.split(''))
       (0..9).each do |num|
-        if signal_set == decoded_map[num.to_s.to_sym].to_set
+        if signal_set == number_map[num.to_s.to_sym].to_set
           number += num.to_s
         end
       end
-
     end
 
     sum += number.to_i
